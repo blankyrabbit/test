@@ -1,10 +1,11 @@
 city
 Boise
 Boston
-Chicage
+Chicago
 Denver
 Honolulu
 Las Vegas
+Los Angelas
 Memphis
 Miami
 Milwaukee
