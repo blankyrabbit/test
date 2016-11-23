@@ -1,0 +1,27 @@
+city
+Boise
+Boston
+Chicage
+Denver
+Honolulu
+Las Vegas
+Memphis
+Miami
+Milwaukee
+Minneapolis
+New York
+Portland
+Salt Lake City
+San Francisco
+Seattle
+email_address
+NULL
+total_shippers
+3
+job_title
+Sales Representative
+Vice President, Sales
+Sales Manager
+Sales Coordinator
+mobile_phone
+NULL
