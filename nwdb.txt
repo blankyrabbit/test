@@ -1,0 +1,31 @@
+  config.vm.provision "shell", inline: <<-SHELL
+    echo "...........UPDATE AND UPGRADE.........."
+    sudo apt-get update -y
+    sudo apt-get upgrade -y
+    echo "...........FINDING MYSQL..............."
+    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password password'
+    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password password'
+    echo "...........INSTALLING MYSQL............"
+    sudo apt-get install mysql-server -y
+    echo "...........TESTING SQL IS WORKING......"
+    ps -wef | grep sql
+    echo "...........INSTALLING GIT.............."
+    sudo apt-get install git -y
+    echo "...........CLONING NORTHWIND DB........"
+    git clone https://gitlab.cs.cf.ac.uk/cm6212/northwind.git
+    cd northwind/
+    echo "...........ACCESSING NORTHWIND........."
+    sudo mysql --user=root --password=password < northwind.sql
+    sudo mysql --user=root --password=password < northwind-data.sql
+    sudo mysql --user=root --password=password
+    echo "...........TESTING NORTHWIND DB........"
+    echo "...........CLONING SQL QUERIES........."
+    cd ..
+    git clone https://github.com/blankyrabbit/test.git
+    cd test/
+    echo "...........EXPORT TEST QUERIES........."
+    sudo mysql -u root -ppassword < northwind_queries.sql > results.txt
+    echo "...........RUNNING DIFFERENCES........."
+    sudo diff results.txt expected_reults.txt
+    echo "...........DONE........................"
+  SHELL
